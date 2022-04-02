@@ -1,0 +1,45 @@
+
+
+<style>
+    .body{
+        background-color: rgb(175, 175, 248);
+    }
+    .center-column{
+            width: 600px;
+            margin: 2px auto;
+            padding: 20px;
+            border-radius: 3px;
+            box-shadow: 6px 2px 3opx 0px rgba(0,0,0,0.75);
+        }
+    </style>
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Delete task</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    </head>
+    
+        
+    
+    
+    <body class="body">
+<div class="center-column">
+
+<h3>Are you sure you want to delete "{{item}}"?</h3>
+<button type="button" class="btn btn-primary">
+<a href="{% url 'list' %}" style="color: white; background-color: transparent; text-decoration: none;">Cancel</a></button><br><br>
+
+<form method="POST" action="">
+    {% csrf_token %}
+
+    <input type="submit" class="btn btn-danger" name="confirm delete" value="Confirm delete" >
+
+</form>
+    </div>
+
+</body>
+</html>

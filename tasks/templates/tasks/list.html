@@ -1,0 +1,64 @@
+
+
+<style>
+.body{
+        background-color: rgb(175, 175, 248);
+    }
+.center-column{
+        width: 600px;
+        margin: 2px auto;
+        padding: 20px;
+        background-color: tomato;
+        border-radius: 3px;
+        box-shadow: 6px 2px 3opx 0px rgba(0,0,0,0.75);
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+
+    
+
+
+<body class="body">
+<div class="center-column">
+    
+    <h3>To Do List</h3>
+    <form method="POST" action="/">
+    {% csrf_token %}
+    <label for="title" class="form-label">Add new task</label><br>
+    {{ form.title }}
+    
+        <input class="btn btn-info" type="submit" name = "Create Task">
+    </form>
+
+    {% for task in tasks %}
+    
+            {% if task.complete == True %}
+                <div class="list-group-item list-group-item-success">
+                    <strike>{{task}}</strike><br>
+                </div>
+            {% else %}
+                <div class="list-group-item list-group-item-danger">
+                    <span>{{task}}</span>
+                </div>
+            {% endif %}
+                
+                    <button type="button" class="btn btn-primary">
+                        <a href="{% url 'update_task' task.id %}" style="color: white; background-color: transparent; text-decoration: none;">Update</a>
+                    </button>
+                    <button type="button" class="btn btn-danger">
+                        <a href="{% url 'delete' task.id %}" style="color: white; background-color: transparent; text-decoration: none;">Delete</a>
+                    </button>
+
+        
+    {% endfor %}
+</div>
+</body>
+</html>
